@@ -1,0 +1,47 @@
+swagger: "2.0"
+info:
+  version: "1.0"
+  title: "Hello World API"
+
+
+securityDefinitions:
+  oAuth:
+    type: oauth2
+    flow: implicit
+    authorizationUrl: https://example.com/oauth/authorize
+
+consumes:
+  - application/json
+produces:
+  - application/json
+security:
+  - oAuth: []
+
+paths:
+  /hello/{user}:
+    get:
+      description: Returns a greeting to the user!
+      parameters:
+        - name: user
+          in: path
+          type: string
+          required: true
+          description: The name of the user to greet.
+          example: 'bob'
+      responses:
+        200:
+          description: Returns the greeting.
+          schema:
+            type: string
+        400:
+          description: Invalid characters in "user" were provided.
+      x-amazon-apigateway-integration:
+        type: aws_proxy
+        httpMethod: POST
+        uri:  ${get_hello_user}
+        credentials: null
+        responses:
+          default:
+            statusCode: "200"
+            responseTemplates:
+              application/json: "json 200 response template"
