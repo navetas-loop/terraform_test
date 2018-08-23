@@ -9,7 +9,7 @@ module "api_role" {
 }
 
 resource "aws_cognito_user_pool" "user_pool" {
-  name                = "userPool"
+  name                = "userPool${var.disambiguation_suffix}"
   username_attributes = ["email"]
 
   schema {
@@ -56,7 +56,7 @@ module "hello_user_lambda" {
   role_arn      = "${module.api_role.role_arn}"
   http_path     = "/hello/{user}"
   http_method   = "GET"
-  function_name = "helloUserLambda"
+  function_name = "helloUserLambda${var.disambiguation_suffix}"
   handler       = "test.handler"
   region        = "${var.region}"
 }
