@@ -3,6 +3,8 @@ An example of a terraform api deployment using swagger
 
 # Install terraform
 Go to [here](https://www.terraform.io/intro/getting-started/install.html) for instructions on how to install terraform.
+# Setup
+To setup run `terraform init`.
 # Deployment
 To deploy run
 `terraform deploy` and to undeploy run `terraform destroy`.

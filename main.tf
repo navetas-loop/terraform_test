@@ -73,4 +73,7 @@ resource "aws_api_gateway_rest_api" "hello_api" {
   name        = "Example API"
   description = "Example desc"
   body        = "${data.template_file.api_file.rendered}"
+  provisioner "local-exec" {
+    command = "echo 'API_RESOURCE_ID=${aws_api_gateway_rest_api.hello_api.id}' >> current-deployment.properties"
+  }
 }
