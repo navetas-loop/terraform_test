@@ -9,7 +9,7 @@ module "api_role" {
 }
 
 resource "aws_cognito_user_pool" "user_pool" {
-  name                = "mypool"
+  name                = "userPool"
   username_attributes = ["email"]
 
   schema {
